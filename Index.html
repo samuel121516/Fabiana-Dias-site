@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fabiana Dias</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(45deg, #ff0000, #ffbb00, #f500cc);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px;
+      position: relative;
+      z-index: 0;
+    }
+
+    /* Moldura decorativa preta e branca */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("https://i.imgur.com/mcH0ULv.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Container com posição relativa para referência da sombra */
+    .container-wrapper {
+      position: relative; /* pai da sombra e container */
+      max-width: 700px;
+      width: 100%;
+    }
+
+    /* Sombra exatamente do tamanho da container, só deslocada */
+    .sombra-diagonal {
+      position: absolute;
+      top: 10px;    /* deslocamento para baixo */
+      left: 10px;   /* deslocamento para direita */
+      width: 100%;
+      height: 100%;
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 3px,
+        transparent 3px,
+        transparent 6px
+      );
+      border-radius: 20px;
+      z-index: 2;
+      filter: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 3;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .caixa-texto {
+      background-color: black;
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    header {
+      background-color: #000;
+      border-radius: 30px;
+      padding: 20px;
+      color: white;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    img.foto-perfil {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 5px double red;
+      margin: 20px 0;
+    }
+
+    a {
+      display: block;
+      margin: 10px 0;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      background-color: #444;
+      padding: 10px;
+      border-radius: 10px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #666;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 30px;
+      }
+
+      .container-wrapper {
+        max-width: 90%;
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      img.foto-perfil {
+        width: 150px;
+        height: 150px;
+      }
+
+      .sombra-diagonal {
+        top: 6px;
+        left: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container-wrapper">
+    <div class="sombra-diagonal"></div>
+
+    <div class="container">
+      <div class="caixa-texto">
+        <h1>Fabiana Dias</h1>
+      </div>
+      <div class="caixa-texto">
+        <p>Fisioterapeuta especialista em escoliose</p>
+      </div>
+
+      <header>
+        <img class="foto-perfil" src="fabiana_fisio.jpg" alt="Fabiana Fisioterapeuta" />
+        <a href="https://wa.me/556792727654" target="_blank">Agende sua consulta pelo WhatsApp</a>
+        <a href="https://www.instagram.com/fabianadias_fisio/" target="_blank">Veja meus trabalhos no Instagram</a>
+      </header>
+    </div>
+  </div>
+</body>
+</html>
