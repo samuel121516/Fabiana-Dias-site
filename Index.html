@@ -14,40 +14,25 @@
     body {
       font-family: Arial, Helvetica, sans-serif;
       min-height: 100vh;
-      background: linear-gradient(45deg, #ffffff, #ffbb00, #ffffff);
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 60px;
       position: relative;
-      z-index: 0;
+      background-color: #755031d5;
     }
 
-    /* Moldura decorativa preta e branca */
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      opacity: 0.5;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* Container com posição relativa para referência da sombra */
     .container-wrapper {
-      position: relative; /* pai da sombra e container */
+      position: relative;
       max-width: 700px;
       width: 100%;
+      z-index: 2;
     }
 
-    /* Sombra exatamente do tamanho da container, só deslocada */
     .sombra-diagonal {
       position: absolute;
-      top: 10px;    /* deslocamento para baixo */
-      left: 10px;   /* deslocamento para direita */
+      top: 10px;
+      left: 10px;
       width: 100%;
       height: 100%;
       background-image: repeating-linear-gradient(
@@ -59,7 +44,6 @@
       );
       border-radius: 20px;
       z-index: 2;
-      filter: none;
     }
 
     .container {
@@ -82,6 +66,15 @@
       text-align: center;
     }
 
+    .caixa-logo {
+      background-image: url("fabiana logo.jpg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 250px;
+      border-radius: 15px;
+    }
+
     header {
       background-color: #000;
       border-radius: 30px;
@@ -95,7 +88,7 @@
       width: 200px;
       height: 200px;
       border-radius: 50%;
-      border: 5px double red;
+      border: 5px double white;
       margin: 20px 0;
     }
 
@@ -113,6 +106,7 @@
 
     a:hover {
       background-color: #000000;
+      color: #fff;
       transform: scale(1.05);
     }
 
@@ -138,6 +132,10 @@
         top: 6px;
         left: 6px;
       }
+
+      .caixa-logo {
+        height: 180px;
+      }
     }
   </style>
 </head>
@@ -149,9 +147,9 @@
       <div class="caixa-texto">
         <h1>Fabiana Dias</h1>
       </div>
-      <div class="caixa-texto">
-        <p>Fisioterapeuta especialista em escoliose</p>
-      </div>
+
+      <!-- Substituído o texto pelo fundo com a imagem -->
+      <div class="caixa-logo"></div>
 
       <header>
         <img class="foto-perfil" src="fabiana_fisio.jpg" alt="Fabiana Fisioterapeuta" />
