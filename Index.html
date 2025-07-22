@@ -358,7 +358,7 @@
   <div class="header-fixed">
     <h2>Fabiana Fisioterapeuta</h2>
     <div class="buttons-right">
-      <button class="chatbot-button" onclick="toggleChatbot()">Agendar/Desmarcar Consulta</button>
+      <button class="chatbot-button" onclick="toggleChatbot()">Agendar Consulta</button>
       <button class="owner-button" onclick="abrirLoginDono()">Entrar como dono</button>
       <button id="btnVerAgendamentos" class="view-agendamentos-button" style="display:none;" onclick="toggleListaAgendamentos()">Ver agendamentos</button>
     </div>
@@ -370,11 +370,11 @@
       <div class="caixa-logo"></div>
       <img class="foto-perfil" src="fabiana_fisio.jpg" alt="Foto de Perfil" />
       
-      <a href="https://wa.me/556792727654?text=Ol%C3%A1%2C+quero+falar+com+a+Fabiana" target="_blank" class="botao-social whatsapp">
+      <a href="https://wa.me/5599999999999?text=Ol%C3%A1%2C+quero+falar+com+a+Fabiana" target="_blank" class="botao-social whatsapp">
         <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
         converse pelo WhatsApp
       </a>
-      <a href="https://www.instagram.com/fabianadias_fisio" target="_blank" class="botao-social instagram">
+      <a href="https://instagram.com/seuusuario" target="_blank" class="botao-social instagram">
         <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
         veja os meus trabalhos e informações
       </a>
@@ -389,7 +389,6 @@
     </div>
     <div class="chatbot-content" id="chatbotContent">
       <button class="chatbot-action-button" onclick="abrirPopupDias()">Agendar dia e horário da consulta</button>
-      <button class="chatbot-action-button" onclick="abrirPopupDesmarcar()">Desmarcar consulta</button>
     </div>
   </div>
 
@@ -426,27 +425,17 @@
     <div class="popup-content" style="position:absolute; width:280px; flex-direction: column;">
       <div class="popup-close" onclick="fecharPopup('popup-nome-paciente')" title="Fechar">×</div>
       <label for="inputNomePaciente" style="width:100%; text-align:left; font-weight:bold; margin-bottom:8px;">Coloque o nome do paciente:</label>
-      <input type="text" id="inputNomePaciente" placeholder="Nome do paciente" style="width:100%; padding:10px; border-radius: 8px; border:1px solid #999; font-size: 1rem;"/>
-      <button id="btnConfirmarNome" class="popup-option" style="width:100%; margin-top: 12px;" onclick="confirmarNomePaciente()" disabled>Confirmar</button>
+      <input type="text" id="inputNomePaciente" placeholder="Nome do paciente" style="width:100%; padding:8px; border-radius: 8px; border: 1px solid #999; margin-bottom: 10px;" />
+      <button id="btnConfirmarNome" onclick="confirmarNomePaciente()" disabled style="width: 100%; padding: 12px; font-weight: bold; border-radius: 12px; background-color: #555; color: white; border: none; cursor: not-allowed;">Confirmar</button>
     </div>
   </div>
 
-  <!-- Popup para desmarcar consulta -->
-  <div class="popup-overlay" id="popup-desmarcar">
-    <div class="popup-content" style="position:absolute; flex-direction: column; max-width: 280px; width:280px;">
-      <div class="popup-close" onclick="fecharPopup('popup-desmarcar')" title="Fechar">×</div>
-      <h3 style="color:black; margin-bottom:15px;">Confirma desmarcar sua consulta?</h3>
-      <button class="popup-option" onclick="confirmarDesmarcar()" style="width: 100%;">Sim, desmarcar</button>
-      <button class="popup-option" onclick="fecharPopup('popup-desmarcar')" style="width: 100%;">Cancelar</button>
-    </div>
-  </div>
-
-  <!-- Popup login do dono -->
-  <div id="popup-login-dono" class="popup-overlay">
+  <!-- Popup login dono -->
+  <div id="popup-login-dono">
     <div class="popup-content">
       <div class="popup-close" onclick="fecharPopup('popup-login-dono')" title="Fechar">×</div>
-      <input type="text" id="loginUsuario" placeholder="Nome de usuário" />
-      <input type="password" id="loginSenha" placeholder="Senha" />
+      <input type="text" id="loginUsuario" placeholder="Nome de usuário" autocomplete="off" />
+      <input type="password" id="loginSenha" placeholder="Senha" autocomplete="off" />
       <button id="btnLoginDono" disabled>Fazer login</button>
     </div>
   </div>
@@ -460,17 +449,26 @@
 <script>
   let diaSelecionado = '';
   let horarioSelecionado = '';
-  let agendamentos = []; // {nome, dia, horario}
+  let agendamentos = [];
 
-  // Desabilita horários/dias já agendados
+  // Carregar agendamentos do localStorage
+  window.onload = () => {
+    const agendamentosSalvos = localStorage.getItem('agendamentos');
+    if (agendamentosSalvos) {
+      agendamentos = JSON.parse(agendamentosSalvos);
+    }
+    atualizarDisponibilidade();
+  };
+
+  function salvarAgendamentos() {
+    localStorage.setItem('agendamentos', JSON.stringify(agendamentos));
+  }
+
   function atualizarDisponibilidade() {
-    // Dias popup
     const popupDias = document.querySelectorAll('#popup-dias .popup-option');
     popupDias.forEach(diaElem => {
       const dia = diaElem.textContent;
-      // Se todo horário daquele dia estiver ocupado, bloqueia o dia
       const horariosDoDia = agendamentos.filter(a => a.dia === dia).map(a => a.horario);
-      // Se ocupou todos horários, desabilita dia
       if (horariosDoDia.length >= 9) {
         diaElem.style.pointerEvents = 'none';
         diaElem.style.opacity = '0.5';
@@ -480,11 +478,9 @@
       }
     });
 
-    // Horários popup
     const popupHorarios = document.querySelectorAll('#popup-horarios .popup-option');
     popupHorarios.forEach(horarioElem => {
       const horario = horarioElem.textContent;
-      // Se o horário do diaSelecionado está ocupado, bloqueia horário
       const ocupado = agendamentos.some(a => a.dia === diaSelecionado && a.horario === horario);
       if (ocupado) {
         horarioElem.style.pointerEvents = 'none';
@@ -496,24 +492,20 @@
     });
   }
 
-  // Toggle chatbot
   function toggleChatbot() {
     const popup = document.getElementById('chatbotPopup');
     if (popup.style.display === 'flex') {
       popup.style.display = 'none';
       fecharPopup('popup-dias');
       fecharPopup('popup-horarios');
-      fecharPopup('popup-desmarcar');
       fecharPopup('popup-nome-paciente');
     } else {
       popup.style.display = 'flex';
     }
   }
 
-  // Popup dias
   function abrirPopupDias() {
     fecharPopup('popup-horarios');
-    fecharPopup('popup-desmarcar');
     fecharPopup('popup-nome-paciente');
     diaSelecionado = '';
     horarioSelecionado = '';
@@ -521,7 +513,6 @@
     document.getElementById('popup-dias').style.display = 'flex';
   }
 
-  // Selecionar dia
   function selecionarDia(dia) {
     diaSelecionado = dia;
     fecharPopup('popup-dias');
@@ -529,18 +520,15 @@
     document.getElementById('popup-horarios').style.display = 'flex';
   }
 
-  // Selecionar horário (abre popup para nome do paciente)
   function selecionarHorario(horario) {
     horarioSelecionado = horario;
     fecharPopup('popup-horarios');
-    // Limpar input nome paciente e desabilitar botão confirmar
     const inputNome = document.getElementById('inputNomePaciente');
     inputNome.value = '';
     document.getElementById('btnConfirmarNome').disabled = true;
     document.getElementById('popup-nome-paciente').style.display = 'flex';
   }
 
-  // Confirmar nome paciente e salvar agendamento
   function confirmarNomePaciente() {
     const nomePaciente = document.getElementById('inputNomePaciente').value.trim();
     if (!nomePaciente) return;
@@ -550,40 +538,18 @@
       dia: diaSelecionado,
       horario: horarioSelecionado
     });
-
+    salvarAgendamentos();
     alert(`Consulta agendada para ${nomePaciente} na ${diaSelecionado} às ${horarioSelecionado}!`);
-
     fecharPopup('popup-nome-paciente');
     toggleChatbot();
+    atualizarDisponibilidade();
   }
 
-  // Abrir popup desmarcar
-  function abrirPopupDesmarcar() {
-    fecharPopup('popup-dias');
-    fecharPopup('popup-horarios');
-    fecharPopup('popup-nome-paciente');
-    document.getElementById('popup-desmarcar').style.display = 'flex';
-  }
-
-  // Confirmar desmarcar (simplificado: remove o último agendamento)
-  function confirmarDesmarcar() {
-    fecharPopup('popup-desmarcar');
-    if (agendamentos.length === 0) {
-      alert('Não há agendamentos para desmarcar.');
-      return;
-    }
-    // Remove último agendamento (pode ser alterado para desmarcar específico)
-    const agendamentoRemovido = agendamentos.pop();
-    alert(`Consulta de ${agendamentoRemovido.nome} na ${agendamentoRemovido.dia} às ${agendamentoRemovido.horario} foi desmarcada.`);
-    toggleChatbot();
-  }
-
-  // Fechar popup genérico
   function fecharPopup(id) {
     document.getElementById(id).style.display = 'none';
   }
 
-  // --- LOGIN DONO ---
+  // LOGIN DONO
   const loginUsuario = document.getElementById('loginUsuario');
   const loginSenha = document.getElementById('loginSenha');
   const btnLoginDono = document.getElementById('btnLoginDono');
@@ -591,7 +557,6 @@
   const popupLoginDono = document.getElementById('popup-login-dono');
   const listaAgendamentosPopup = document.getElementById('lista-agendamentos-popup');
 
-  // Ativa/desativa botão login conforme campos
   function validarCredenciaisInput() {
     if (
       loginUsuario.value === 'fabianadias_fisio' &&
@@ -608,7 +573,6 @@
   loginUsuario.addEventListener('input', validarCredenciaisInput);
   loginSenha.addEventListener('input', validarCredenciaisInput);
 
-  // Abre popup login dono
   function abrirLoginDono() {
     loginUsuario.value = '';
     loginSenha.value = '';
@@ -617,14 +581,12 @@
     popupLoginDono.style.display = 'flex';
   }
 
-  // Login dono
   btnLoginDono.addEventListener('click', () => {
     popupLoginDono.style.display = 'none';
     btnVerAgendamentos.style.display = 'inline-block';
     alert('Login realizado com sucesso!');
   });
 
-  // Toggle lista de agendamentos
   function toggleListaAgendamentos() {
     if (listaAgendamentosPopup.style.display === 'block') {
       listaAgendamentosPopup.style.display = 'none';
@@ -634,7 +596,6 @@
     }
   }
 
-  // Atualiza lista agendamentos no popup dono
   function atualizarListaAgendamentos() {
     const ul = document.getElementById('lista-agendamentos');
     ul.innerHTML = '';
@@ -649,7 +610,7 @@
     });
   }
 
-  // Ativa botão confirmar nome paciente quando tem texto
+  // Ativa botão confirmar nome paciente
   const inputNomePaciente = document.getElementById('inputNomePaciente');
   const btnConfirmarNome = document.getElementById('btnConfirmarNome');
   inputNomePaciente.addEventListener('input', () => {
