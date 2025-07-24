@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fabiana Dias - Fisioterapeuta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header com navegação fixa -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <h1>Fabiana Dias</h1>
+        <p>Fisioterapeuta</p>
+      </div>
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="#inicio" class="nav-link">Início</a></li>
+          <li><a href="#servicos" class="nav-link">Serviços</a></li>
+          <li><a href="#galeria" class="nav-link">Galeria</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
+          <li><a href="#" class="nav-link schedule-btn" id="schedule-btn">Agendar Consulta</a></li>
+          <li><a href="#" class="nav-link login-btn" id="login-btn">Área do Profissional</a></li>
+        </ul>
+      </nav>
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Seção de Início/Boas-vindas -->
+  <section id="inicio" class="section welcome-section">
+    <div class="container">
+      <div class="welcome-content">
+        <h2 class="section-title">Bem-vindo à Fisioterapia de Excelência</h2>
+        <p class="section-description">Cuidando da sua saúde e bem-estar com tratamentos personalizados e técnicas modernas.</p>
+        <div class="welcome-buttons">
+          <a href="#servicos" class="btn primary-btn">Conheça nossos serviços</a>
+          <a href="#contato" class="btn secondary-btn">Agende uma consulta</a>
+        </div>
+      </div>
+      <div class="welcome-image">
+        <img src="../fabiana_fisio.jpg" alt="Fabiana Dias Fisioterapeuta">
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Serviços -->
+  <section id="servicos" class="section services-section">
+    <div class="container">
+      <h2 class="section-title">Nossos Serviços</h2>
+      <p class="section-description">Conheça os tratamentos e técnicas que oferecemos para melhorar sua qualidade de vida.</p>
+      
+      <div class="services-grid">
+        <div class="service-card" data-id="service-1">
+          <div class="service-image">
+            <img src="../fisioterapia.png" alt="Fisioterapia Ortopédica">
+          </div>
+          <div class="service-content">
+            <h3>Fisioterapia Ortopédica</h3>
+            <p>Tratamento especializado para lesões musculoesqueléticas, recuperação pós-cirúrgica e alívio de dores crônicas.</p>
+          </div>
+        </div>
+        
+        <div class="service-card" data-id="service-2">
+          <div class="service-image">
+            <img src="../fisioterapia.png" alt="Fisioterapia Neurológica">
+          </div>
+          <div class="service-content">
+            <h3>Fisioterapia Neurológica</h3>
+            <p>Reabilitação para pacientes com condições neurológicas, melhorando mobilidade e independência.</p>
+          </div>
+        </div>
+        
+        <div class="service-card" data-id="service-3">
+          <div class="service-image">
+            <img src="../fisioterapia.png" alt="Pilates Terapêutico">
+          </div>
+          <div class="service-content">
+            <h3>Pilates Terapêutico</h3>
+            <p>Exercícios personalizados para fortalecimento, flexibilidade e equilíbrio, adaptados às suas necessidades.</p>
+          </div>
+        </div>
+        
+        <div class="service-card" data-id="service-4">
+          <div class="service-image">
+            <img src="../fisioterapia.png" alt="Fisioterapia Esportiva">
+          </div>
+          <div class="service-content">
+            <h3>Fisioterapia Esportiva</h3>
+            <p>Prevenção e tratamento de lesões esportivas, melhorando performance e reduzindo tempo de recuperação.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Galeria -->
+  <section id="galeria" class="section gallery-section">
+    <div class="container">
+      <h2 class="section-title">Galeria</h2>
+      <p class="section-description">Conheça nosso espaço e alguns dos tratamentos realizados.</p>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item" data-id="gallery-1">
+          <img src="../fisioterapia.png" alt="Imagem da Galeria 1">
+        </div>
+        <div class="gallery-item" data-id="gallery-2">
+          <img src="../fisioterapia.png" alt="Imagem da Galeria 2">
+        </div>
+        <div class="gallery-item" data-id="gallery-3">
+          <img src="../fisioterapia.png" alt="Imagem da Galeria 3">
+        </div>
+        <div class="gallery-item" data-id="gallery-4">
+          <img src="../fisioterapia.png" alt="Imagem da Galeria 4">
+        </div>
+        <div class="gallery-item" data-id="gallery-5">
+          <img src="../fisioterapia.png" alt="Imagem da Galeria 5">
+        </div>
+        <div class="gallery-item" data-id="gallery-6">
+          <img src="../fisioterapia.png" alt="Imagem da Galeria 6">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção de Contato -->
+  <section id="contato" class="section contact-section">
+    <div class="container">
+      <h2 class="section-title">Entre em Contato</h2>
+      <p class="section-description">Estamos prontos para atender você e responder suas dúvidas.</p>
+      
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div>
+              <h3>Endereço</h3>
+              <p id="address-text">Avenida Mato Grosso, 2264 - jd dos estados</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fab fa-whatsapp"></i>
+            <div>
+              <h3>WhatsApp</h3>
+              <p><a href="https://wa.me/556792727654" id="whatsapp-link">(67) 9272-7654</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fab fa-instagram"></i>
+            <div>
+              <h3>Instagram</h3>
+              <p><a href="https://instagram.com/fabianadias_fisio" id="instagram-link">@fabianadias_fisio</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="far fa-clock"></i>
+            <div>
+              <h3>Horário de Atendimento</h3>
+              <p id="hours-text">Segunda a Sexta: 8h às 18h</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-map">
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h2>Fabiana Dias</h2>
+          <p>Fisioterapeuta</p>
+        </div>
+        <div class="footer-links">
+          <h3>Links Rápidos</h3>
+          <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+        <div class="footer-social">
+          <h3>Redes Sociais</h3>
+          <div class="social-icons">
+            <a href="https://instagram.com/seuusuario" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/556792727654" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Fabiana Dias Fisioterapia. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal de Agendamento -->
+  <div class="modal" id="schedule-modal">
+    <div class="modal-content">
+      <span class="close-modal" id="close-schedule-modal">&times;</span>
+      <h2>Agendar Consulta</h2>
+      <form id="schedule-form">
+        <div class="form-group">
+          <label for="name">Nome Completo</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefone/WhatsApp</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="schedule-date">Data da Consulta</label>
+          <input type="date" id="schedule-date" name="schedule-date" required>
+        </div>
+        <div class="form-group">
+          <label for="schedule-time">Horário Preferencial</label>
+          <select id="schedule-time" name="schedule-time" required>
+            <option value="">Selecione um horário</option>
+            <option value="08:00">08:00</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="service-type">Tipo de Atendimento</label>
+          <select id="service-type" name="service-type" required>
+            <option value="">Selecione um serviço</option>
+            <option value="Fisioterapia Ortopédica">Fisioterapia Ortopédica</option>
+            <option value="Fisioterapia Neurológica">Fisioterapia Neurológica</option>
+            <option value="Pilates Terapêutico">Pilates Terapêutico</option>
+            <option value="Fisioterapia Esportiva">Fisioterapia Esportiva</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="notes">Observações (opcional)</label>
+          <textarea id="notes" name="notes" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn primary-btn">Solicitar Agendamento</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de Login para Área do Profissional -->
+  <div class="modal" id="login-modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Área do Profissional</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Usuário</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn primary-btn">Entrar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal de Visualização de Agendamentos -->
+  <div class="modal" id="appointments-modal">
+    <div class="modal-content appointments-content">
+      <span class="close-modal" id="close-appointments-modal">&times;</span>
+      <h2>Agendamentos</h2>
+      <div class="appointments-filters">
+        <div class="form-group">
+          <label for="filter-date">Filtrar por Data</label>
+          <input type="date" id="filter-date" name="filter-date">
+        </div>
+        <button class="btn secondary-btn" id="clear-filter-btn">Limpar Filtro</button>
+      </div>
+      <div class="appointments-list" id="appointments-list">
+        <p class="no-appointments">Nenhum agendamento encontrado.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
